@@ -6,6 +6,7 @@ import jp.ac.it_college.std.s14003.pdp.adapter.PrintBanner;
 import jp.ac.it_college.std.s14003.pdp.adapter.PrintBanner2;
 import jp.ac.it_college.std.s14003.pdp.iterator.Book;
 import jp.ac.it_college.std.s14003.pdp.iterator.BookShelf;
+import jp.ac.it_college.std.s14003.pdp.iterator.BookShelf2;
 import jp.ac.it_college.std.s14003.pdp.iterator.Iterator;
 
 import java.util.*;
@@ -20,7 +21,8 @@ public class Main {
         //arrayListTest1();
         //listTest();
         //queueTest2();
-        HashMapTest();
+        //HashMapTest();
+        practice1_1();
     }
 
     public static void iteratorMain() {
@@ -29,6 +31,21 @@ public class Main {
         bookShelf.appendBook(new Book("Bible"));
         bookShelf.appendBook(new Book("Cinderella"));
         bookShelf.appendBook(new Book("Daddy-Long-Legs"));
+        Iterator it = bookShelf.iterator();
+        while (it.hasNext()) {
+            Book book = (Book)it.next();
+            System.out.println(book.getName());
+        }
+    }
+
+    public static void practice1_1() {
+        BookShelf bookShelf = new BookShelf2(4);
+        bookShelf.appendBook(new Book("Around the World in 80 Days"));
+        bookShelf.appendBook(new Book("Bible"));
+        bookShelf.appendBook(new Book("Cinderella"));
+        bookShelf.appendBook(new Book("Daddy-Long-Legs"));
+        bookShelf.appendBook(new Book("abebebebebbeebe"));
+
         Iterator it = bookShelf.iterator();
         while (it.hasNext()) {
             Book book = (Book)it.next();
@@ -255,4 +272,6 @@ public class Main {
 
         System.out.println("Fredの値 = " + map.get("Fred"));
     }
+
+
 }

@@ -4,10 +4,23 @@ import jp.ac.it_college.std.s14003.pdp.adapter.Print;
 import jp.ac.it_college.std.s14003.pdp.adapter.Print2;
 import jp.ac.it_college.std.s14003.pdp.adapter.PrintBanner;
 import jp.ac.it_college.std.s14003.pdp.adapter.PrintBanner2;
+import jp.ac.it_college.std.s14003.pdp.builder.Director;
+import jp.ac.it_college.std.s14003.pdp.builder.HTMLBuilder;
+import jp.ac.it_college.std.s14003.pdp.builder.TextBuilder;
+import jp.ac.it_college.std.s14003.pdp.factory.framework.Factory;
+import jp.ac.it_college.std.s14003.pdp.factory.framework.Product;
+import jp.ac.it_college.std.s14003.pdp.factory.idcard.IDCardFactory;
 import jp.ac.it_college.std.s14003.pdp.iterator.Book;
 import jp.ac.it_college.std.s14003.pdp.iterator.BookShelf;
 import jp.ac.it_college.std.s14003.pdp.iterator.BookShelf2;
 import jp.ac.it_college.std.s14003.pdp.iterator.Iterator;
+import jp.ac.it_college.std.s14003.pdp.prototype.MessageBox;
+import jp.ac.it_college.std.s14003.pdp.prototype.UnderlinePen;
+import jp.ac.it_college.std.s14003.pdp.prototype.framework.Manager;
+import jp.ac.it_college.std.s14003.pdp.singleton.Singleton;
+import jp.ac.it_college.std.s14003.pdp.template.AbstractDisplay;
+import jp.ac.it_college.std.s14003.pdp.template.CharDisplay;
+import jp.ac.it_college.std.s14003.pdp.template.StringDisplay;
 
 import java.util.*;
 
@@ -22,7 +35,13 @@ public class Main {
         //listTest();
         //queueTest2();
         //HashMapTest();
-        practice1_1();
+        //practice1_1();
+        //templateTest();
+        //factorMain();
+        //factoryMain();
+        builderMain(new String[] {"html"});
+
+
     }
 
     public static void iteratorMain() {
@@ -52,11 +71,13 @@ public class Main {
             System.out.println(book.getName());
         }
     }
+
     public  static void adapterMain() {
         Print p = new PrintBanner("Main");
         p.printWeak();
         p.printStrong();
     }
+
     public static void adapterMain2() {
         Print2 p = new PrintBanner2("Hello");
         p.printWeak();
@@ -143,6 +164,7 @@ public class Main {
 
         System.out.println(list);
     }
+
     public static void queueTest1() {
         Queue<String> queue =  new LinkedList<>();
 
@@ -271,6 +293,88 @@ public class Main {
         System.out.println("Bobの値 = " + map.get("Bob"));
 
         System.out.println("Fredの値 = " + map.get("Fred"));
+    }
+
+    public static void templateTest() {
+        AbstractDisplay d1 = new CharDisplay('H');
+        AbstractDisplay d2 = new StringDisplay("Hello World");
+        AbstractDisplay d3 = new StringDisplay("こんにちは");
+        d1.display();
+        d2.display();
+        d3.display();
+    }
+
+    public static void factorMain() {
+        Factory factory = new IDCardFactory();
+
+        Product card1 = factory.create("結城浩");
+        Product card2 = factory.create("とむら");
+        Product card3 = factory.create("佐藤花子");
+
+        card1.use();
+        card2.use();
+        card3.use();
+    }
+
+    public static void factoryMain() {
+        System.out.println("Start");
+        Singleton obj1 = Singleton.getInstance();
+        Singleton obj2 = Singleton.getInstance();
+
+        if (obj1 == obj2) {
+            System.out.println("obj1とobj2は同じインスタンスです");
+        } else {
+            System.out.println("obj1とobj2は違うインスタンスです");
+        }
+        System.out.println("End.");
+    }
+
+    public static void priducttypeMain() {
+        Manager manager = new Manager();
+        UnderlinePen upen = new UnderlinePen('~');
+        MessageBox mbox = new MessageBox('*');
+        MessageBox sbox = new MessageBox('/');
+        manager.register("strong message", upen);
+        manager.register("warning box", mbox);
+        manager.register("slash box", sbox);
+
+        jp.ac.it_college.std.s14003.pdp.prototype.framework.Product p1
+                 = manager.create("strong message");
+        p1.use("Hello, World");
+        jp.ac.it_college.std.s14003.pdp.prototype.framework.Product p2
+                = manager.create("warning message");
+        p2.use("Hello, World");
+        jp.ac.it_college.std.s14003.pdp.prototype.framework.Product p3
+                = manager.create("slash box");
+        p3.use("Hello, World");
+    }
+
+    public static void builderMain(String[] args) {
+       if (args.length != 1) {
+           Builderusage();
+           System.exit(0);
+       }
+        if (args[0].equals("plain")) {
+            TextBuilder textBuilder = new TextBuilder();
+            Director director = new Director(textBuilder);
+            director.construct();
+            String result = textBuilder.getResult();
+            System.out.println(result);
+        } else if (args[0].equals("html")) {
+            HTMLBuilder htmlBuilder = new HTMLBuilder();
+            Director director = new Director(htmlBuilder);
+            director.construct();
+            String filename = htmlBuilder.getResult();
+            System.out.println(filename + "が作成されました。");
+        } else {
+            Builderusage();
+            System.exit(0);
+        }
+
+    }
+    public static void Builderusage() {
+        System.out.println("Usage: java Main plain 　　　プレーンテキストで作成");
+        System.out.println("Usage: java Main html　　　　HTMLファイルで文書作成");
     }
 
 

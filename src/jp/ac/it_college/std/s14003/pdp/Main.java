@@ -57,7 +57,8 @@ public class Main {
         //compositeMain();
         //jp.ac.it_college.std.s14003.pdp.decorator.Main.main(args);
         //jp.ac.it_college.std.s14003.pdp.visitor.Main.main(args);
-        jp.ac.it_college.std.s14003.pdp.resposibility.Main.main(args);
+        //jp.ac.it_college.std.s14003.pdp.resposibility.Main.main(args);
+        jp.ac.it_college.std.s14003.pdp.facede.Main.main(args);
     }
 
     public static void iteratorMain() {

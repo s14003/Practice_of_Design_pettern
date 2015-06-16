@@ -59,7 +59,8 @@ public class Main {
         //jp.ac.it_college.std.s14003.pdp.visitor.Main.main(args);
         //jp.ac.it_college.std.s14003.pdp.resposibility.Main.main(args);
        // jp.ac.it_college.std.s14003.pdp.mediator.LoginFrame("Mediator Sample");
-        new jp.ac.it_college.std.s14003.pdp.mediator.LoginFrame("Mediator Sample");
+       // new jp.ac.it_college.std.s14003.pdp.mediator.LoginFrame("Mediator Sample");
+        jp.ac.it_college.std.s14003.pdp.observer.Main.main(args);
     }
 
     public static void iteratorMain() {

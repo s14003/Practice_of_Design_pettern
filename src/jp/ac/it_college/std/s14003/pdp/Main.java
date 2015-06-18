@@ -64,7 +64,9 @@ public class Main {
         //jp.ac.it_college.std.s14003.pdp.memento.Main.main();
         //jp.ac.it_college.std.s14003.pdp.state.Main.main();
         //jp.ac.it_college.std.s14003.pdp.flyweight.Main.main(new String[]{"1212123"});
-        jp.ac.it_college.std.s14003.pdp.proxy.Main.main();
+        //jp.ac.it_college.std.s14003.pdp.proxy.Main.main();
+        //jp.ac.it_college.std.s14003.pdp.command.Main.main();
+        jp.ac.it_college.std.s14003.pdp.interpreter.Main.main();
     }
 
     public static void iteratorMain() {
